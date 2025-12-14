@@ -10,19 +10,31 @@ Draft Diagram
 
 **API Gateway Service**:
 
-- Purpose:  Main entry point for all client request. it handles routing, authentication, rate limiting and monitoring.
+1. Purpose:  Main entry point for all client request. it handles routing, authentication, rate limiting and monitoring.
 
-- Ports:
-    1. PostgreSQL connection variables are established on port 5432
-    2. Redis connection on port 6379
+2. Ports:
+    - PostgreSQL connection variables are established on port 5432
+    - Redis connection on port 6379
+    - RabbitMQ on port 15672
+    - auth-service on port 3004
+    - wallet-service on port 3001
+    - transaction-service on port 3002
+    - notification-service on port 3003
 
-- Environmental Variables:
+3. Environmental Variables:
+    - loaded from .env.example for DB, Redis, RabbitMWQ, JWT, Services, CORS,   Environment (Dev), Email, SendGrid, SMS-Twilio, SSL/TLS for Production, Logging
 
-- Dependencies (other services/DB/cache):
-    1. express - a web framewrok for Node.js
-    2. helmet - sets seurity headers
-    3. cors - cross-origin resource sharing to allow frontend to call API
-    4. 
+4. Dependencies (other services/DB/cache):
+    - express - a web framewrok for Node.js. Application setup.
+    - helmet - sets seurity headers
+    - cors - cross-origin resource sharing to allow frontend to call API
+    - morgain - HTTP request logger
+    - rateLimit - limiting to prevent abuse
+    - axios - HTTP client for calling other services
+    - Prometheus - metrics collection for health and performance
+    - Circuit breaker - to prevent cascading failure
+    - User Registration Tracking - Successful and failed signups
+    - Money Transfer - counts money transfer for analytics
 
 **Auth Service**:
 
